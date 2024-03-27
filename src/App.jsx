@@ -12,22 +12,37 @@ const Content = (props) =>{
   )
 }
 
-const Parts = (props) =>{
+const Parts = ({parts}) =>{
+  // console.log(parts);
   return(
-    props.parts.map(part => {
+   parts.map(part => {
+      // console.log(part.name)
+      // console.log(part.exercises);
       return (
         <p key={part.id}>{part.name} {part.exercises}</p>
-      )
+        )
     })
   )
 }
 
+const Total = ({parts}) =>{
+
+let sum = parts.reduce(function(a , b){
+  // console.log(a , b.exercises);
+  return  a + b.exercises
+}, 0)
+
+  return(
+    <p>Total of {sum}</p>
+  )
+}
 
 const Course = ({course}) =>{
   return(
     <>
        <Header name = {course.name} />
        <Content parts = {course.parts} />
+       <Total parts = {course.parts} />
     </>
   )
 }
